@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_shared_task_notes",
+  "info": {
+    "displayName": "Task Notes"
+  },
+  "options": {},
+  "attributes": {
+    "placeholder": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

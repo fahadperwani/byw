@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "music_and_others",
+  "info": {
+    "singularName": "music-and-other",
+    "pluralName": "music-and-others",
+    "displayName": "Music And Other"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "music": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::music.music",
+      "inversedBy": "musicAndOther"
+    },
+    "others": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::other-music.other-music",
+      "inversedBy": "musicAndOther"
+    },
+    "notes": {
+      "type": "text"
+    },
+    "wedding": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::wedding.wedding",
+      "inversedBy": "musicAndOther"
+    }
+  }
+}

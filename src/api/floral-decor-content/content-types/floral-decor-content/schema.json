@@ -1,0 +1,50 @@
+{
+  "kind": "singleType",
+  "collectionName": "floral_decor_contents",
+  "info": {
+    "singularName": "floral-decor-content",
+    "pluralName": "floral-decor-contents",
+    "displayName": "Floral Decor Content"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "decorAdvice": {
+      "type": "component",
+      "component": "shared.drawer",
+      "repeatable": false
+    },
+    "designFloralDecorAdvice": {
+      "type": "component",
+      "component": "shared.drawer",
+      "repeatable": false
+    },
+    "suppliesAdvice": {
+      "type": "component",
+      "component": "shared.drawer",
+      "repeatable": false
+    },
+    "constructFloralDecorAdvice": {
+      "type": "component",
+      "component": "shared.drawer",
+      "repeatable": false
+    },
+    "linensAdvice": {
+      "type": "component",
+      "component": "shared.drawer",
+      "repeatable": false
+    },
+    "lightingAdvice": {
+      "type": "component",
+      "component": "shared.drawer",
+      "repeatable": false
+    },
+    "floristAdvice": {
+      "type": "component",
+      "component": "shared.drawer",
+      "repeatable": false
+    }
+  }
+}

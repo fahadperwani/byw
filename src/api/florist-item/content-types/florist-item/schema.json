@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "florist_items",
+  "info": {
+    "singularName": "florist-item",
+    "pluralName": "florist-items",
+    "displayName": "Florist Item",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "quantity": {
+      "type": "integer"
+    },
+    "isPurchased": {
+      "type": "boolean"
+    },
+    "wedding": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::wedding.wedding",
+      "inversedBy": "floristItems"
+    }
+  }
+}

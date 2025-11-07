@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "weddding_weeks",
+  "info": {
+    "singularName": "weddding-week",
+    "pluralName": "weddding-weeks",
+    "displayName": "Weddding Week"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "cleanUpSchedule": {
+      "type": "boolean",
+      "required": false,
+      "default": false
+    },
+    "coOrdinatorFound": {
+      "type": "boolean",
+      "required": false,
+      "default": false
+    },
+    "coOrdinatorDetails": {
+      "type": "boolean",
+      "required": false,
+      "default": false
+    },
+    "weddingTimeline": {
+      "type": "boolean",
+      "required": false,
+      "default": false
+    },
+    "scheduleTimeline": {
+      "type": "boolean",
+      "required": false,
+      "default": false
+    },
+    "notes": {
+      "type": "text"
+    },
+    "weddingDay": {
+      "type": "boolean",
+      "required": false,
+      "default": false
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "collectionName": "components_shared_playlists",
+  "info": {
+    "displayName": "Playlists"
+  },
+  "options": {},
+  "attributes": {
+    "notes": {
+      "type": "text"
+    },
+    "preludePlaylist": {
+      "type": "boolean",
+      "default": false
+    },
+    "groomEntrance": {
+      "type": "boolean",
+      "default": false
+    },
+    "weddingParty": {
+      "type": "boolean",
+      "default": false
+    },
+    "brideEntrance": {
+      "type": "boolean",
+      "default": false
+    },
+    "specialSong": {
+      "type": "boolean",
+      "default": false
+    },
+    "recessionalSong": {
+      "type": "boolean",
+      "default": false
+    },
+    "postCeremonyPlaylist": {
+      "type": "boolean",
+      "default": false
+    },
+    "entranceSong": {
+      "type": "boolean",
+      "default": false
+    },
+    "firstDance": {
+      "type": "boolean",
+      "default": false
+    },
+    "fatherDaughter": {
+      "type": "boolean",
+      "default": false
+    },
+    "motherSon": {
+      "type": "boolean",
+      "default": false
+    },
+    "bgMusic": {
+      "type": "boolean",
+      "default": false
+    },
+    "dancingPlaylist": {
+      "type": "boolean",
+      "default": false
+    },
+    "sendOffSong": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "config": {}
+}

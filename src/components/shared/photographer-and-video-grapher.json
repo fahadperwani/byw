@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_shared_photographer_and_video_graphers",
+  "info": {
+    "displayName": "Photographer & VideoGrapher"
+  },
+  "options": {},
+  "attributes": {
+    "notes": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

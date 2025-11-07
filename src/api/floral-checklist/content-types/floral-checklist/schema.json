@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "floral_checklists",
+  "info": {
+    "singularName": "floral-checklist",
+    "pluralName": "floral-checklists",
+    "displayName": "Floral Checklist",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "designFloralDecor": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::floral-and-decor-task.floral-and-decor-task"
+    },
+    "orderSupplies": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::floral-and-decor-task.floral-and-decor-task"
+    },
+    "nonPerishablesConstructed": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::floral-and-decor-task.floral-and-decor-task"
+    },
+    "perishablesConstructed": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::floral-and-decor-task.floral-and-decor-task"
+    },
+    "orderLinens": {
+      "type": "boolean"
+    },
+    "orderLighting": {
+      "type": "boolean"
+    }
+  }
+}

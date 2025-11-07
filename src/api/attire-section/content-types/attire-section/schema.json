@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "attire_sections",
+  "info": {
+    "singularName": "attire-section",
+    "pluralName": "attire-sections",
+    "displayName": "Attire Section",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "accessoriesPurchased": {
+      "type": "boolean"
+    },
+    "dresses": {
+      "type": "json"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "kind": "collectionType",
+  "collectionName": "venues",
+  "info": {
+    "singularName": "venue",
+    "pluralName": "venues",
+    "displayName": "Venue",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "address": {
+      "type": "text"
+    },
+    "indoor": {
+      "type": "boolean"
+    },
+    "outdoor": {
+      "type": "boolean"
+    },
+    "cost": {
+      "type": "decimal"
+    },
+    "hoursOfUse": {
+      "type": "integer"
+    },
+    "tables": {
+      "type": "integer"
+    },
+    "chairs": {
+      "type": "integer"
+    },
+    "linens": {
+      "type": "integer"
+    },
+    "parking": {
+      "type": "boolean"
+    },
+    "soundEquipment": {
+      "type": "boolean"
+    },
+    "restrooms": {
+      "type": "boolean"
+    },
+    "setupCleanup": {
+      "type": "boolean"
+    },
+    "notes": {
+      "type": "text"
+    },
+    "wedding": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::wedding.wedding",
+      "inversedBy": "venues"
+    },
+    "occupancy": {
+      "type": "integer"
+    }
+  }
+}

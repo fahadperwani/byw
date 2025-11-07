@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "floral_decors",
+  "info": {
+    "singularName": "floral-decor",
+    "pluralName": "floral-decors",
+    "displayName": "Floral Decor",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "designFloralsDecor": {
+      "type": "boolean"
+    },
+    "orderSupplies": {
+      "type": "boolean"
+    },
+    "constructFloralsDecor": {
+      "type": "boolean"
+    },
+    "decideTableClothNeedds": {
+      "type": "boolean"
+    },
+    "tableClothCare": {
+      "type": "boolean"
+    },
+    "decidedLightings": {
+      "type": "boolean"
+    },
+    "wedding": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::wedding.wedding",
+      "inversedBy": "floralDecor"
+    },
+    "orderLinens": {
+      "type": "boolean"
+    },
+    "orderLighting": {
+      "type": "boolean"
+    }
+  }
+}

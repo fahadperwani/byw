@@ -1,0 +1,35 @@
+{
+  "kind": "singleType",
+  "collectionName": "photo_and_video_contents",
+  "info": {
+    "singularName": "photo-and-video-content",
+    "pluralName": "photo-and-video-contents",
+    "displayName": "Photo And Video Content"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "photoVideoAdvice": {
+      "type": "component",
+      "component": "shared.drawer",
+      "repeatable": false
+    },
+    "comparePhotoAdvice": {
+      "type": "component",
+      "component": "shared.drawer",
+      "repeatable": false
+    },
+    "compareVideoAdvice": {
+      "type": "component",
+      "component": "shared.drawer",
+      "repeatable": false
+    },
+    "photoVideoFinalAdvice": {
+      "type": "component",
+      "component": "shared.drawer",
+      "repeatable": false
+    }
+  }
+}

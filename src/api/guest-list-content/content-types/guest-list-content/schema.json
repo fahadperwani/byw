@@ -1,0 +1,28 @@
+{
+  "kind": "singleType",
+  "collectionName": "guest_list_contents",
+  "info": {
+    "singularName": "guest-list-content",
+    "pluralName": "guest-list-contents",
+    "displayName": "Guest List Content"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "guestAdvice": {
+      "type": "component",
+      "component": "shared.drawer",
+      "repeatable": false
+    },
+    "guestListAdvice": {
+      "type": "component",
+      "component": "shared.drawer",
+      "repeatable": false
+    },
+    "seatingContent": {
+      "type": "blocks"
+    }
+  }
+}

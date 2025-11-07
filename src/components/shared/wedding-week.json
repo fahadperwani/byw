@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_shared_wedding_weeks",
+  "info": {
+    "displayName": "Wedding Week"
+  },
+  "options": {},
+  "attributes": {
+    "notes": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "guest_and_seatings",
+  "info": {
+    "singularName": "guest-and-seating",
+    "pluralName": "guest-and-seatings",
+    "displayName": "Guest And Seating"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "createGuestList": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "guestsAddedToList": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "finalizeGuestList": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "makeSeatingChart": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "designSeatingChart": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "wedding": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::wedding.wedding",
+      "inversedBy": "guestAndSeating"
+    }
+  }
+}

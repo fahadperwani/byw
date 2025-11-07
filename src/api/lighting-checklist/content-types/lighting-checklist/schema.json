@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "lighting_checklists",
+  "info": {
+    "singularName": "lighting-checklist",
+    "pluralName": "lighting-checklists",
+    "displayName": "Lighting Checklist"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "orderLightingSupplies": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::floral-and-decor-task.floral-and-decor-task"
+    },
+    "decidedLighting": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::floral-and-decor-task.floral-and-decor-task"
+    }
+  }
+}

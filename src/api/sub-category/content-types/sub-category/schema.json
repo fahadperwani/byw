@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sub_categories",
+  "info": {
+    "singularName": "sub-category",
+    "pluralName": "sub-categories",
+    "displayName": "SubCategory"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "checkBox": {
+      "type": "boolean"
+    },
+    "label": {
+      "type": "string"
+    },
+    "checkBoxValue": {
+      "type": "boolean"
+    },
+    "tasks": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::predefined-task.predefined-task",
+      "mappedBy": "subCategory"
+    },
+    "wedding": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::wedding.wedding"
+    },
+    "text": {
+      "type": "text"
+    },
+    "notes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::note.note",
+      "mappedBy": "subCategory"
+    }
+  }
+}

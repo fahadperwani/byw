@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_shared_contents",
+  "info": {
+    "displayName": "Content"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "text"
+    },
+    "richText": {
+      "type": "blocks"
+    },
+    "navigation": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

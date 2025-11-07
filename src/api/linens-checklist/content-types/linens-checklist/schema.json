@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "linens_checklists",
+  "info": {
+    "singularName": "linens-checklist",
+    "pluralName": "linens-checklists",
+    "displayName": "Linens Checklist"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "decidedTablecloths": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::floral-and-decor-task.floral-and-decor-task"
+    },
+    "orderSupplies": {
+      "type": "text"
+    },
+    "ironedTablecloths": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::floral-and-decor-task.floral-and-decor-task"
+    }
+  }
+}

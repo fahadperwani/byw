@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "alterations",
+  "info": {
+    "singularName": "alteration",
+    "pluralName": "alterations",
+    "displayName": "Alteration",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "scheduled": {
+      "type": "boolean"
+    },
+    "received": {
+      "type": "boolean"
+    },
+    "items": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::alteration-item.alteration-item",
+      "mappedBy": "alteration"
+    },
+    "wedding": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::wedding.wedding"
+    },
+    "isBridal": {
+      "type": "boolean",
+      "required": true
+    }
+  }
+}

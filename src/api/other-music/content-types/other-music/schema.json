@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "other_musics",
+  "info": {
+    "singularName": "other-music",
+    "pluralName": "other-musics",
+    "displayName": "Other Music"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "soundSystem": {
+      "type": "enumeration",
+      "enum": [
+        "I'm not using a sound system.",
+        "Using the Venue's",
+        "Renting the equipment",
+        "Borrowing the equipment"
+      ]
+    },
+    "notes": {
+      "type": "text"
+    },
+    "musicAndOther": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::music-and-other.music-and-other",
+      "mappedBy": "others"
+    }
+  }
+}

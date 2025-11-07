@@ -1,0 +1,30 @@
+{
+  "kind": "singleType",
+  "collectionName": "music_and_sound_contents",
+  "info": {
+    "singularName": "music-and-sound-content",
+    "pluralName": "music-and-sound-contents",
+    "displayName": "Music And Sound Content"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "musicSoundAdvice": {
+      "type": "component",
+      "component": "shared.drawer",
+      "repeatable": false
+    },
+    "musicPlaylistAdvice": {
+      "type": "component",
+      "component": "shared.drawer",
+      "repeatable": false
+    },
+    "soundAdvice": {
+      "type": "component",
+      "component": "shared.drawer",
+      "repeatable": false
+    }
+  }
+}

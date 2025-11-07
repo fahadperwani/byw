@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_shared_odds_ends_miscs",
+  "info": {
+    "displayName": "Odds Ends Misc"
+  },
+  "options": {},
+  "attributes": {
+    "decidePartyFavors": {
+      "type": "boolean",
+      "default": false
+    },
+    "buyPartyFavors": {
+      "type": "boolean",
+      "default": false
+    },
+    "brideRingPurchased": {
+      "type": "boolean",
+      "default": false
+    },
+    "groomRingPurchased": {
+      "type": "boolean",
+      "default": false
+    },
+    "honeymoonPlanned": {
+      "type": "boolean",
+      "default": false
+    },
+    "notes": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

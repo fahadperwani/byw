@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "task_templates",
+  "info": {
+    "singularName": "task-template",
+    "pluralName": "task-templates",
+    "displayName": "Task Template"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "subCategories": {
+      "type": "component",
+      "component": "shared.sub-category",
+      "repeatable": true
+    }
+  }
+}

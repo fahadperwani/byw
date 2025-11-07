@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "helper_roles",
+  "info": {
+    "singularName": "helper-role",
+    "pluralName": "helper-roles",
+    "displayName": "Venue Helper Role",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "helpers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::venue-helper.venue-helper",
+      "inversedBy": "roles"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "venue",
+        "floral",
+        "food",
+        "caterer"
+      ]
+    }
+  }
+}

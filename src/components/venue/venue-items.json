@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_venue_venue_items",
+  "info": {
+    "displayName": "Venue Items"
+  },
+  "options": {},
+  "attributes": {
+    "tables": {
+      "type": "integer"
+    },
+    "chairs": {
+      "type": "integer"
+    },
+    "tents": {
+      "type": "integer"
+    },
+    "danceFloor": {
+      "type": "boolean",
+      "default": false
+    },
+    "soundEquipment": {
+      "type": "boolean"
+    },
+    "restrooms": {
+      "type": "boolean"
+    },
+    "delegation": {
+      "type": "boolean"
+    },
+    "notes": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

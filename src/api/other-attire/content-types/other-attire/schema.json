@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "other_attires",
+  "info": {
+    "singularName": "other-attire",
+    "pluralName": "other-attires",
+    "displayName": "Other Attire"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "childrenDresses": {
+      "type": "json"
+    },
+    "otherDresses": {
+      "type": "json"
+    },
+    "wedding": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::wedding.wedding",
+      "inversedBy": "otherAttires"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "kind": "singleType",
+  "collectionName": "wedding_weeks",
+  "info": {
+    "singularName": "wedding-week",
+    "pluralName": "wedding-weeks",
+    "displayName": "Wedding Week"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "lastWeekSchedule": {
+      "type": "blocks"
+    },
+    "weddingSetup": {
+      "type": "blocks"
+    },
+    "cleanUp": {
+      "type": "blocks"
+    },
+    "rehearsalDinner": {
+      "type": "blocks"
+    },
+    "rehearsal": {
+      "type": "blocks"
+    },
+    "coOrdinatorTips": {
+      "type": "blocks"
+    },
+    "ceremonyOrder": {
+      "type": "blocks"
+    },
+    "ceremonyReception": {
+      "type": "blocks"
+    },
+    "eventsOrder": {
+      "type": "blocks"
+    },
+    "timeline1": {
+      "type": "blocks"
+    },
+    "timeline2": {
+      "type": "blocks"
+    },
+    "weddingWeekAdvice": {
+      "type": "component",
+      "component": "shared.drawer",
+      "repeatable": false
+    },
+    "rehearsalAdvice": {
+      "type": "component",
+      "component": "shared.drawer",
+      "repeatable": false
+    },
+    "eventsOrderAdvice": {
+      "type": "component",
+      "component": "shared.drawer",
+      "repeatable": false
+    },
+    "sampleWeddingTimelineAdvice": {
+      "type": "component",
+      "component": "shared.drawer",
+      "repeatable": false
+    }
+  }
+}

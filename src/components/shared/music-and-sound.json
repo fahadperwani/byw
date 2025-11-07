@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_shared_music_and_sounds",
+  "info": {
+    "displayName": "Music And Sound"
+  },
+  "options": {},
+  "attributes": {
+    "notes": {
+      "type": "text"
+    },
+    "playlists": {
+      "type": "component",
+      "component": "shared.playlists",
+      "repeatable": false
+    },
+    "sound": {
+      "type": "component",
+      "component": "shared.sound",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

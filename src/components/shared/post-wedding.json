@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_shared_post_weddings",
+  "info": {
+    "displayName": "Post Wedding"
+  },
+  "options": {},
+  "attributes": {
+    "returnItems": {
+      "type": "boolean",
+      "default": false
+    },
+    "checkVenue": {
+      "type": "boolean",
+      "default": false
+    },
+    "checkRegistry": {
+      "type": "boolean",
+      "default": false
+    },
+    "finish": {
+      "type": "boolean",
+      "default": false
+    },
+    "notes": {
+      "type": "text"
+    },
+    "dressDecision": {
+      "type": "enumeration",
+      "enum": [
+        "Sell my dress",
+        "Donate my dress",
+        "Preserve my dress"
+      ]
+    }
+  },
+  "config": {}
+}

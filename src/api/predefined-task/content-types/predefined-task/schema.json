@@ -1,0 +1,57 @@
+{
+  "kind": "collectionType",
+  "collectionName": "predefined_tasks",
+  "info": {
+    "singularName": "predefined-task",
+    "pluralName": "predefined-tasks",
+    "displayName": "Predefined Task"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": false
+    },
+    "category": {
+      "type": "string"
+    },
+    "isCompleted": {
+      "type": "boolean",
+      "default": false
+    },
+    "deadline": {
+      "type": "date"
+    },
+    "wedding": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::wedding.wedding",
+      "inversedBy": "predefinedTasks"
+    },
+    "priority": {
+      "type": "integer"
+    },
+    "dueDate": {
+      "type": "date"
+    },
+    "navigation": {
+      "type": "string"
+    },
+    "subCategory": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::sub-category.sub-category",
+      "inversedBy": "tasks"
+    },
+    "deadlines": {
+      "type": "json"
+    },
+    "extensions": {
+      "type": "json"
+    }
+  }
+}

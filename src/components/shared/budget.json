@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_shared_budgets",
+  "info": {
+    "displayName": "Budget"
+  },
+  "options": {},
+  "attributes": {
+    "venue": {
+      "type": "integer"
+    },
+    "floral": {
+      "type": "integer"
+    },
+    "attire": {
+      "type": "integer"
+    },
+    "photo": {
+      "type": "integer"
+    },
+    "food": {
+      "type": "integer"
+    },
+    "communication": {
+      "type": "integer"
+    },
+    "miscellaneous": {
+      "type": "integer"
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,38 @@
+{
+  "collectionName": "components_shared_sub_categories",
+  "info": {
+    "displayName": "subCategory"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "checkBox": {
+      "type": "boolean"
+    },
+    "label": {
+      "type": "string"
+    },
+    "checkBoxValue": {
+      "type": "boolean"
+    },
+    "tasks": {
+      "type": "component",
+      "component": "shared.task",
+      "repeatable": true
+    },
+    "notes": {
+      "type": "component",
+      "component": "shared.task-notes",
+      "repeatable": true
+    },
+    "text": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

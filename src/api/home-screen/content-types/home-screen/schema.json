@@ -1,0 +1,36 @@
+{
+  "kind": "singleType",
+  "collectionName": "home_screens",
+  "info": {
+    "singularName": "home-screen",
+    "pluralName": "home-screens",
+    "displayName": "Home Screen"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "budgetLow": {
+      "type": "blocks"
+    },
+    "budgetMedium": {
+      "type": "blocks"
+    },
+    "budgetHigh": {
+      "type": "blocks"
+    },
+    "weddingAdvice": {
+      "type": "blocks"
+    },
+    "totoListAdvice": {
+      "type": "blocks"
+    },
+    "planningAdvice": {
+      "type": "blocks"
+    },
+    "budgetAdvice": {
+      "type": "blocks"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "floral_and_decor_tasks",
+  "info": {
+    "singularName": "floral-and-decor-task",
+    "pluralName": "floral-and-decor-tasks",
+    "displayName": "Floral Decor Task",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "label": {
+      "type": "text"
+    },
+    "isDone": {
+      "type": "boolean"
+    }
+  }
+}

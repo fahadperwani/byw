@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tasks",
+  "info": {
+    "singularName": "task",
+    "pluralName": "tasks",
+    "displayName": "Task",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "dueDate": {
+      "type": "date"
+    },
+    "deadline": {
+      "type": "date"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "Wedding Location",
+        "Attire",
+        "Decorations & Floral",
+        "Food",
+        "Guest List",
+        "Communication",
+        "Photography & Videography",
+        "Music and Sound",
+        "Odds & Ends"
+      ]
+    },
+    "note": {
+      "type": "text"
+    },
+    "isCompleted": {
+      "type": "boolean",
+      "default": false
+    },
+    "wedding": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::wedding.wedding",
+      "inversedBy": "tasks"
+    }
+  }
+}

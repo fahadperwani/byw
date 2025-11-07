@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "odds_and_ends",
+  "info": {
+    "singularName": "odds-and-end",
+    "pluralName": "odds-and-ends",
+    "displayName": "Odds And End"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "legal": {
+      "type": "component",
+      "component": "shared.legal",
+      "repeatable": false
+    },
+    "official": {
+      "type": "component",
+      "component": "shared.official",
+      "repeatable": false
+    },
+    "miscellaneous": {
+      "type": "component",
+      "component": "shared.odds-ends-misc",
+      "repeatable": false
+    },
+    "postWedding": {
+      "type": "component",
+      "component": "shared.post-wedding",
+      "repeatable": false
+    },
+    "notes": {
+      "type": "text"
+    },
+    "wedding": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::wedding.wedding",
+      "inversedBy": "oddsEnds"
+    }
+  }
+}

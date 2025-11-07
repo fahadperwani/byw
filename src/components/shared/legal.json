@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_shared_legals",
+  "info": {
+    "displayName": "Legal"
+  },
+  "options": {},
+  "attributes": {
+    "researchLaws": {
+      "type": "boolean",
+      "default": false
+    },
+    "purchaseLicense": {
+      "type": "boolean",
+      "default": false
+    },
+    "eventInsurance": {
+      "type": "boolean",
+      "default": false
+    },
+    "notes": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

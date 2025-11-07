@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_shared_tasks",
+  "info": {
+    "displayName": "Task"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "isCompleted": {
+      "type": "boolean",
+      "default": false
+    },
+    "category": {
+      "type": "string"
+    },
+    "priority": {
+      "type": "integer"
+    },
+    "deadlines": {
+      "type": "json"
+    },
+    "extensions": {
+      "type": "json"
+    },
+    "subCategory": {
+      "type": "string"
+    },
+    "navigation": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

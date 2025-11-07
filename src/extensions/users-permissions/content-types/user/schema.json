@@ -1,0 +1,69 @@
+{
+  "kind": "collectionType",
+  "collectionName": "up_users",
+  "info": {
+    "singularName": "user",
+    "pluralName": "users",
+    "displayName": "User",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "users-permissions": {
+      "advanced": {
+        "unique_email": true,
+        "default_role": "authenticated",
+        "allow_register": true
+      }
+    }
+  },
+  "attributes": {
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "dob": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email",
+      "required": true,
+      "unique": true
+    },
+    "confirmed": {
+      "type": "boolean",
+      "default": false
+    },
+    "isOnboardingCompleted": {
+      "type": "boolean",
+      "default": false
+    },
+    "wedding": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::wedding.wedding",
+      "mappedBy": "user"
+    },
+    "googleId": {
+      "type": "string"
+    },
+    "payment": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::payment.payment",
+      "mappedBy": "user"
+    },
+    "termsAccepted": {
+      "type": "boolean",
+      "default": false
+    },
+    "isPremium": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

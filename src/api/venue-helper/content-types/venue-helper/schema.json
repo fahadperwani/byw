@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "venue_helpers",
+  "info": {
+    "singularName": "venue-helper",
+    "pluralName": "venue-helpers",
+    "displayName": "Venue-Helper",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "notes": {
+      "type": "text"
+    },
+    "roles": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::helper-role.helper-role",
+      "mappedBy": "helpers"
+    },
+    "wedding": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::wedding.wedding",
+      "inversedBy": "helpers"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "venue",
+        "floral",
+        "caterer",
+        "food"
+      ]
+    },
+    "cost": {
+      "type": "integer"
+    }
+  }
+}

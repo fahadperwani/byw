@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_shared_officials",
+  "info": {
+    "displayName": "Official"
+  },
+  "options": {},
+  "attributes": {
+    "retainOfficiant": {
+      "type": "boolean",
+      "default": false
+    },
+    "meetOfficiant": {
+      "type": "boolean",
+      "default": false
+    },
+    "researchVows": {
+      "type": "boolean",
+      "default": false
+    },
+    "writeVows": {
+      "type": "boolean",
+      "default": false
+    },
+    "notes": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

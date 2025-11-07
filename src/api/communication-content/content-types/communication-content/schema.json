@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "communication_contents",
+  "info": {
+    "singularName": "communication-content",
+    "pluralName": "communication-contents",
+    "displayName": "Communication Content"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "communicationAdvice": {
+      "type": "component",
+      "component": "shared.drawer",
+      "repeatable": false
+    }
+  }
+}

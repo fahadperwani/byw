@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_shared_communications",
+  "info": {
+    "displayName": "Communication"
+  },
+  "options": {},
+  "attributes": {
+    "notes": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

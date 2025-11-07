@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dresses",
+  "info": {
+    "singularName": "dress",
+    "pluralName": "dresses",
+    "displayName": "Dress",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "shopName": {
+      "type": "string"
+    },
+    "shopAddress": {
+      "type": "string"
+    },
+    "cost": {
+      "type": "decimal"
+    },
+    "note": {
+      "type": "text"
+    },
+    "isBridal": {
+      "type": "boolean"
+    },
+    "wedding": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::wedding.wedding",
+      "inversedBy": "dresses"
+    }
+  }
+}

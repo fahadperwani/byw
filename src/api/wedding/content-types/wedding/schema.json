@@ -1,0 +1,195 @@
+{
+  "kind": "collectionType",
+  "collectionName": "weddings",
+  "info": {
+    "singularName": "wedding",
+    "pluralName": "weddings",
+    "displayName": "Wedding",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "weddingDay": {
+      "type": "date"
+    },
+    "totalBudget": {
+      "type": "integer"
+    },
+    "guestCount": {
+      "type": "integer"
+    },
+    "priorities": {
+      "type": "json"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "wedding"
+    },
+    "tasks": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::task.task",
+      "mappedBy": "wedding"
+    },
+    "venues": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::venue.venue",
+      "mappedBy": "wedding"
+    },
+    "dresses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::dress.dress",
+      "mappedBy": "wedding"
+    },
+    "selectedVenue": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::venue.venue"
+    },
+    "helpers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::venue-helper.venue-helper",
+      "mappedBy": "wedding"
+    },
+    "bridalDress": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::dress.dress"
+    },
+    "groomOutfit": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::dress.dress"
+    },
+    "bridesMaidDresses": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::attire-section.attire-section"
+    },
+    "groomsMenOutfits": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::attire-section.attire-section"
+    },
+    "floralDecor": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::floral-decor.floral-decor",
+      "mappedBy": "wedding"
+    },
+    "otherAttires": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::other-attire.other-attire",
+      "mappedBy": "wedding"
+    },
+    "guestAndSeating": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::guest-and-seating.guest-and-seating",
+      "mappedBy": "wedding"
+    },
+    "musicAndOther": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::music-and-other.music-and-other",
+      "mappedBy": "wedding"
+    },
+    "mealSection": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::meal.meal",
+      "mappedBy": "wedding"
+    },
+    "dessertSection": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::dessert.dessert",
+      "mappedBy": "wedding"
+    },
+    "budget": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::budget.budget",
+      "mappedBy": "wedding"
+    },
+    "selectedCaterer": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::venue-helper.venue-helper"
+    },
+    "oddsEnds": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::odds-and-end.odds-and-end",
+      "mappedBy": "wedding"
+    },
+    "predefinedTasks": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::predefined-task.predefined-task",
+      "mappedBy": "wedding"
+    },
+    "venueItems": {
+      "type": "component",
+      "component": "venue.venue-items",
+      "repeatable": false
+    },
+    "communication": {
+      "type": "component",
+      "component": "shared.communication",
+      "repeatable": false
+    },
+    "floristItems": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::florist-item.florist-item",
+      "mappedBy": "wedding"
+    },
+    "musicAndSound": {
+      "type": "component",
+      "component": "shared.music-and-sound",
+      "repeatable": false
+    },
+    "mediaPersons": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::photographer-or-videographer.photographer-or-videographer",
+      "mappedBy": "wedding"
+    },
+    "photographer": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::photographer-or-videographer.photographer-or-videographer"
+    },
+    "videographer": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::photographer-or-videographer.photographer-or-videographer"
+    },
+    "mediaSection": {
+      "type": "component",
+      "component": "shared.photographer-and-video-grapher",
+      "repeatable": false
+    },
+    "weddingWeek": {
+      "type": "component",
+      "component": "shared.wedding-week",
+      "repeatable": false
+    },
+    "notes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::note.note",
+      "mappedBy": "wedding"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "photographer_or_videographers",
+  "info": {
+    "singularName": "photographer-or-videographer",
+    "pluralName": "photographer-or-videographers",
+    "displayName": "Photographer Or Videographer"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "serviceHours": {
+      "type": "integer"
+    },
+    "cost": {
+      "type": "integer"
+    },
+    "notes": {
+      "type": "text"
+    },
+    "isPhotographer": {
+      "type": "boolean"
+    },
+    "wedding": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::wedding.wedding",
+      "inversedBy": "mediaPersons"
+    },
+    "section": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::photographer-and-videographer.photographer-and-videographer",
+      "inversedBy": "persons"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_shared_sounds",
+  "info": {
+    "displayName": "Sound"
+  },
+  "options": {},
+  "attributes": {
+    "soundSystem": {
+      "type": "enumeration",
+      "enum": [
+        "I'm not using a sound system.",
+        "Using the Venue's",
+        "Renting the equipment",
+        "Borrowing the equipment"
+      ]
+    },
+    "notes": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

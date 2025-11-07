@@ -1,0 +1,40 @@
+{
+  "kind": "singleType",
+  "collectionName": "odds_and_ends_contents",
+  "info": {
+    "singularName": "odds-and-ends-content",
+    "pluralName": "odds-and-ends-contents",
+    "displayName": "Odds And Ends Content"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "oddsEndsAdvice": {
+      "type": "component",
+      "component": "shared.drawer",
+      "repeatable": false
+    },
+    "legalAdvice": {
+      "type": "component",
+      "component": "shared.drawer",
+      "repeatable": false
+    },
+    "miscAdvice": {
+      "type": "component",
+      "component": "shared.drawer",
+      "repeatable": false
+    },
+    "officialAdvice": {
+      "type": "component",
+      "component": "shared.drawer",
+      "repeatable": false
+    },
+    "postWeddingAdvice": {
+      "type": "component",
+      "component": "shared.drawer",
+      "repeatable": false
+    }
+  }
+}

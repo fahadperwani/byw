@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_shared_drawers",
+  "info": {
+    "displayName": "Drawer"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "navigation": {
+      "type": "string"
+    },
+    "tier": {
+      "type": "enumeration",
+      "enum": [
+        "free",
+        "premium"
+      ]
+    }
+  },
+  "config": {}
+}
