@@ -1,0 +1,563 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "BYW API",
+    "description": "OpenAPI documentation for custom endpoints in the BYW (Strapi v5) backend. Standard Strapi CRUD endpoints also exist for most content-types under /api/{collection}. This spec focuses on business flows and custom routes (auth, payment, wedding, predefined-task, task-template).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    { "url": "http://localhost:1337/api", "description": "Local" }
+  ],
+  "tags": [
+    { "name": "Auth" },
+    { "name": "Payment" },
+    { "name": "PredefinedTask" },
+    { "name": "TaskTemplate" },
+    { "name": "Wedding" }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "properties": {
+          "data": { "nullable": true },
+          "error": {
+            "type": "object",
+            "properties": {
+              "status": { "type": "integer" },
+              "name": { "type": "string" },
+              "message": { "type": "string" },
+              "details": { "type": "object" }
+            },
+            "required": ["status", "name", "message"]
+          }
+        }
+      },
+      "AuthTokens": {
+        "type": "object",
+        "properties": {
+          "jwt": { "type": "string" },
+          "refreshToken": { "type": "string" }
+        },
+        "required": ["jwt", "refreshToken"]
+      },
+      "Payment": {
+        "type": "object",
+        "properties": {
+          "documentId": { "type": "string" },
+          "user": { "type": "string", "description": "user documentId" },
+          "expiry": { "type": "string", "format": "date-time", "nullable": true },
+          "googleToken": { "type": "string", "nullable": true },
+          "appleId": { "type": "string", "nullable": true },
+          "type": {
+            "type": "string",
+            "enum": [
+              "com.bridalyourway.mobile.staging.lifetime",
+              "com.bridalyourway.mobile.staging.monthly"
+            ]
+          },
+          "start": { "type": "string", "format": "date-time", "nullable": true },
+          "status": { "type": "string", "enum": ["active", "expired", "consumed"] }
+        }
+      },
+      "PredefinedTask": {
+        "type": "object",
+        "properties": {
+          "documentId": { "type": "string" },
+          "name": { "type": "string" },
+          "category": { "type": "string" },
+          "isCompleted": { "type": "boolean" },
+          "deadline": { "type": "string", "format": "date", "nullable": true },
+          "dueDate": { "type": "string", "format": "date", "nullable": true },
+          "priority": { "type": "integer", "nullable": true },
+          "navigation": { "type": "string", "nullable": true },
+          "subCategory": { "type": "string", "nullable": true },
+          "deadlines": { "type": "object", "nullable": true },
+          "extensions": { "type": "object", "nullable": true },
+          "wedding": { "type": "string", "description": "wedding documentId" }
+        }
+      },
+      "TaskTemplate": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "subCategories": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/SubCategory" }
+          }
+        }
+      },
+      "SubCategory": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "category": { "type": "string" },
+          "checkBox": { "type": "boolean" },
+          "label": { "type": "string" },
+          "checkBoxValue": { "type": "boolean" },
+          "text": { "type": "string", "nullable": true },
+          "tasks": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/TaskComponent" }
+          },
+          "notes": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/TaskNotes" }
+          }
+        }
+      },
+      "TaskComponent": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "isCompleted": { "type": "boolean" },
+          "category": { "type": "string" },
+          "priority": { "type": "integer", "nullable": true },
+          "deadlines": { "type": "object", "nullable": true },
+          "extensions": { "type": "object", "nullable": true },
+          "subCategory": { "type": "string", "nullable": true },
+          "navigation": { "type": "string", "nullable": true }
+        }
+      },
+      "TaskNotes": {
+        "type": "object",
+        "properties": {
+          "placeholder": { "type": "string" }
+        }
+      },
+      "Wedding": {
+        "type": "object",
+        "properties": {
+          "documentId": { "type": "string" },
+          "weddingDay": { "type": "string", "format": "date" },
+          "totalBudget": { "type": "integer" },
+          "guestCount": { "type": "integer" },
+          "priorities": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "Food & Catering",
+                "Music & Sound",
+                "Photography & Videography",
+                "Venue",
+                "Attire",
+                "Decorations",
+                "Guests",
+                "Other"
+              ]
+            },
+            "minItems": 1,
+            "maxItems": 3
+          }
+        }
+      },
+      "CreateWeddingBody": {
+        "type": "object",
+        "required": ["weddingDay", "totalBudget", "guestCount", "priorities"],
+        "properties": {
+          "weddingDay": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+          "totalBudget": { "type": "number", "minimum": 0 },
+          "guestCount": { "type": "integer", "minimum": 1 },
+          "priorities": { "$ref": "#/components/schemas/Wedding/properties/priorities" }
+        }
+      },
+      "UpdateWeddingBody": {
+        "type": "object",
+        "properties": {
+          "weddingDay": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+          "totalBudget": { "type": "number", "minimum": 0 },
+          "guestCount": { "type": "integer", "minimum": 1 },
+          "priorities": { "$ref": "#/components/schemas/Wedding/properties/priorities" }
+        }
+      },
+      "UpdateSpentBudgetBody": {
+        "type": "object",
+        "properties": {
+          "venue": { "type": "integer", "minimum": 0 },
+          "floral": { "type": "integer", "minimum": 0 },
+          "photo": { "type": "integer", "minimum": 0 },
+          "attire": { "type": "integer", "minimum": 0 },
+          "food": { "type": "integer", "minimum": 0 },
+          "communication": { "type": "integer", "minimum": 0 },
+          "miscellaneous": { "type": "integer", "minimum": 0 }
+        }
+      },
+      "UpdatePlaylistsBody": {
+        "type": "object",
+        "properties": {
+          "notes": { "type": "string", "nullable": true },
+          "preludePlaylist": { "type": "boolean" },
+          "groomEntrance": { "type": "boolean" },
+          "weddingParty": { "type": "boolean" },
+          "brideEntrance": { "type": "boolean" },
+          "specialSong": { "type": "boolean" },
+          "recessionalSong": { "type": "boolean" },
+          "postCeremonyPlaylist": { "type": "boolean" },
+          "entranceSong": { "type": "boolean" },
+          "firstDance": { "type": "boolean" },
+          "fatherDaughter": { "type": "boolean" },
+          "motherSon": { "type": "boolean" },
+          "bgMusic": { "type": "boolean" },
+          "dancingPlaylist": { "type": "boolean" },
+          "sendOffSong": { "type": "boolean" }
+        }
+      },
+      "UpdateSoundBody": {
+        "type": "object",
+        "properties": {
+          "soundSystem": {
+            "type": "string",
+            "enum": [
+              "I'm not using a sound system.",
+              "Using the Venue's",
+              "Renting the equipment",
+              "Borrowing the equipment"
+            ]
+          },
+          "notes": { "type": "string", "nullable": true }
+        }
+      },
+      "UpdatePredefinedTaskBody": {
+        "type": "object",
+        "required": ["documentId", "isCompleted"],
+        "properties": {
+          "documentId": { "type": "string" },
+          "isCompleted": { "type": "boolean" }
+        }
+      },
+      "UpdateSubCategoryCheckboxBody": {
+        "type": "object",
+        "required": ["checkBoxValue"],
+        "properties": {
+          "checkBoxValue": { "type": "boolean" }
+        }
+      },
+      "SignupBody": {
+        "type": "object",
+        "required": ["firstName", "lastName", "email", "dob", "termsAccepted"],
+        "properties": {
+          "firstName": { "type": "string" },
+          "lastName": { "type": "string" },
+          "email": { "type": "string", "format": "email" },
+          "dob": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+          "termsAccepted": { "type": "boolean" }
+        }
+      },
+      "LoginBody": {
+        "type": "object",
+        "required": ["email"],
+        "properties": {
+          "email": { "type": "string", "format": "email" }
+        }
+      },
+      "VerifyOtpBody": {
+        "type": "object",
+        "required": ["email", "code"],
+        "properties": {
+          "email": { "type": "string", "format": "email" },
+          "code": { "type": "string" }
+        }
+      },
+      "GoogleAuthBody": {
+        "type": "object",
+        "required": ["accessToken"],
+        "properties": {
+          "accessToken": { "type": "string" }
+        }
+      },
+      "RefreshTokenBody": {
+        "type": "object",
+        "required": ["refreshToken"],
+        "properties": {
+          "refreshToken": { "type": "string" }
+        }
+      },
+      "UpdateUserBody": {
+        "type": "object",
+        "properties": {
+          "firstName": { "type": "string" },
+          "lastName": { "type": "string" },
+          "termsAccepted": { "type": "boolean" }
+        }
+      },
+      "MakeGooglePaymentBody": {
+        "type": "object",
+        "required": ["purchaseToken", "productId"],
+        "properties": {
+          "purchaseToken": { "type": "string" },
+          "productId": {
+            "type": "string",
+            "enum": [
+              "com.bridalyourway.mobile.staging.lifetime",
+              "com.bridalyourway.mobile.staging.monthly"
+            ]
+          }
+        }
+      },
+      "MakeApplePaymentBody": {
+        "type": "object",
+        "required": ["purchaseToken"],
+        "properties": {
+          "purchaseToken": { "type": "string", "description": "Apple transactionId" }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/auth/signup": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Signup with OTP",
+        "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/SignupBody" } } } },
+        "responses": {
+          "200": { "description": "OTP sent" },
+          "400": { "description": "Bad request", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } } }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Request OTP for login",
+        "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/LoginBody" } } } },
+        "responses": { "200": { "description": "OTP sent" }, "400": { "description": "Bad request" } }
+      }
+    },
+    "/auth/verify-otp": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Verify OTP and get tokens",
+        "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/VerifyOtpBody" } } } },
+        "responses": { "200": { "description": "Tokens", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/AuthTokens" } } } } }
+      }
+    },
+    "/auth/google-auth": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Google sign-in to get tokens",
+        "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/GoogleAuthBody" } } } },
+        "responses": { "200": { "description": "Tokens", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/AuthTokens" } } } } }
+      }
+    },
+    "/auth/refresh-token": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Refresh tokens",
+        "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/RefreshTokenBody" } } } },
+        "responses": { "200": { "description": "Tokens", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/AuthTokens" } } } } }
+      }
+    },
+    "/auth/get-user": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Get current user",
+        "security": [ { "bearerAuth": [] } ],
+        "responses": { "200": { "description": "Current user" }, "401": { "description": "Unauthorized" } }
+      }
+    },
+    "/auth/update-user": {
+      "patch": {
+        "tags": ["Auth"],
+        "summary": "Update current user",
+        "security": [ { "bearerAuth": [] } ],
+        "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/UpdateUserBody" } } } },
+        "responses": { "200": { "description": "Updated" }, "401": { "description": "Unauthorized" } }
+      }
+    },
+    "/auth/delete-user": {
+      "delete": {
+        "tags": ["Auth"],
+        "summary": "Delete current user",
+        "security": [ { "bearerAuth": [] } ],
+        "responses": { "200": { "description": "Deleted" }, "401": { "description": "Unauthorized" } }
+      }
+    },
+
+    "/payment/google/make": {
+      "post": {
+        "tags": ["Payment"],
+        "summary": "Make Google payment",
+        "security": [ { "bearerAuth": [] } ],
+        "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/MakeGooglePaymentBody" } } } },
+        "responses": { "200": { "description": "Payment created", "content": { "application/json": { "schema": { "type": "object", "properties": { "message": { "type": "string" }, "payment": { "$ref": "#/components/schemas/Payment" } } } } } }, "400": { "description": "Bad request" } }
+      }
+    },
+    "/payment/apple/make": {
+      "post": {
+        "tags": ["Payment"],
+        "summary": "Make Apple payment",
+        "security": [ { "bearerAuth": [] } ],
+        "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/MakeApplePaymentBody" } } } },
+        "responses": { "200": { "description": "Payment created", "content": { "application/json": { "schema": { "type": "object", "properties": { "message": { "type": "string" }, "payment": { "$ref": "#/components/schemas/Payment" } } } } } } }
+      }
+    },
+    "/payment/get": {
+      "get": {
+        "tags": ["Payment"],
+        "summary": "Get current user's payment (and update status/premium)",
+        "security": [ { "bearerAuth": [] } ],
+        "responses": { "200": { "description": "Payment", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Payment" } } } }, "404": { "description": "Not found" } }
+      }
+    },
+
+    "/tasks/predefined/get": {
+      "get": {
+        "tags": ["PredefinedTask"],
+        "summary": "Get prioritized predefined tasks or by category",
+        "security": [ { "bearerAuth": [] } ],
+        "parameters": [
+          { "in": "query", "name": "category", "schema": { "type": "string" }, "required": false, "description": "Attire | Food | Music | Wedding Week | Odds & Ends | Photo & Video | Communication" }
+        ],
+        "responses": { "200": { "description": "Tasks or subCategories+notes" } }
+      }
+    },
+    "/tasks/predefined/update": {
+      "patch": {
+        "tags": ["PredefinedTask"],
+        "summary": "Update predefined task isCompleted",
+        "security": [ { "bearerAuth": [] } ],
+        "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/UpdatePredefinedTaskBody" } } } },
+        "responses": { "200": { "description": "Updated task", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/PredefinedTask" } } } } }
+      }
+    },
+    "/tasks/predefined/getByNavigation": {
+      "get": {
+        "tags": ["PredefinedTask"],
+        "summary": "Get predefined tasks by navigation grouping",
+        "security": [ { "bearerAuth": [] } ],
+        "parameters": [ { "in": "query", "name": "navigation", "schema": { "type": "string" }, "required": true } ],
+        "responses": { "200": { "description": "Map of tasks by name" } }
+      }
+    },
+    "/subcategory/checkbox/update": {
+      "patch": {
+        "tags": ["PredefinedTask"],
+        "summary": "Update sub-category checkbox value",
+        "security": [ { "bearerAuth": [] } ],
+        "parameters": [ { "in": "query", "name": "id", "required": true, "schema": { "type": "string" } } ],
+        "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/UpdateSubCategoryCheckboxBody" } } } },
+        "responses": { "200": { "description": "Updated" }, "404": { "description": "Not found" } }
+      }
+    },
+
+    "/task-template": {
+      "get": {
+        "tags": ["TaskTemplate"],
+        "summary": "Get task template (single type)",
+        "security": [ { "bearerAuth": [] } ],
+        "parameters": [ { "in": "query", "name": "populate", "schema": { "type": "string" }, "required": false } ],
+        "responses": { "200": { "description": "TaskTemplate", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/TaskTemplate" } } } } }
+      },
+      "put": {
+        "tags": ["TaskTemplate"],
+        "summary": "Replace task template",
+        "security": [ { "bearerAuth": [] } ],
+        "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/TaskTemplate" } } } },
+        "responses": { "200": { "description": "Updated" } }
+      },
+      "patch": {
+        "tags": ["TaskTemplate"],
+        "summary": "Update task template",
+        "security": [ { "bearerAuth": [] } ],
+        "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/TaskTemplate" } } } },
+        "responses": { "200": { "description": "Updated" } }
+      }
+    },
+
+    "/wedding/create": {
+      "post": {
+        "tags": ["Wedding"],
+        "summary": "Create wedding for current user",
+        "security": [ { "bearerAuth": [] } ],
+        "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/CreateWeddingBody" } } } },
+        "responses": { "201": { "description": "Created" }, "409": { "description": "User already has wedding" } }
+      }
+    },
+    "/wedding/get": {
+      "get": {
+        "tags": ["Wedding"],
+        "summary": "Get current user's wedding",
+        "security": [ { "bearerAuth": [] } ],
+        "responses": { "200": { "description": "Wedding", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Wedding" } } } }, "404": { "description": "Not found" } }
+      }
+    },
+    "/wedding/update": {
+      "patch": {
+        "tags": ["Wedding"],
+        "summary": "Update wedding",
+        "security": [ { "bearerAuth": [] } ],
+        "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/UpdateWeddingBody" } } } },
+        "responses": { "200": { "description": "Updated" } }
+      }
+    },
+    "/wedding/budget": {
+      "get": {
+        "tags": ["Wedding"],
+        "summary": "Get budget for current user's wedding",
+        "security": [ { "bearerAuth": [] } ],
+        "responses": { "200": { "description": "Budget object" }, "404": { "description": "Not found" } }
+      }
+    },
+    "/wedding/budget/update": {
+      "patch": {
+        "tags": ["Wedding"],
+        "summary": "Update spent budget values",
+        "security": [ { "bearerAuth": [] } ],
+        "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/UpdateSpentBudgetBody" } } } },
+        "responses": { "200": { "description": "Budget updated" } }
+      }
+    },
+    "/music/get": {
+      "get": {
+        "tags": ["Wedding"],
+        "summary": "Get playlists",
+        "security": [ { "bearerAuth": [] } ],
+        "responses": { "200": { "description": "Playlists object" } }
+      }
+    },
+    "/music/update": {
+      "patch": {
+        "tags": ["Wedding"],
+        "summary": "Update playlists and mark related tasks",
+        "security": [ { "bearerAuth": [] } ],
+        "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/UpdatePlaylistsBody" } } } },
+        "responses": { "200": { "description": "Updated" } }
+      }
+    },
+    "/others/get": {
+      "get": {
+        "tags": ["Wedding"],
+        "summary": "Get sound setup",
+        "security": [ { "bearerAuth": [] } ],
+        "responses": { "200": { "description": "Sound object" } }
+      }
+    },
+    "/others/update": {
+      "patch": {
+        "tags": ["Wedding"],
+        "summary": "Update sound system settings",
+        "security": [ { "bearerAuth": [] } ],
+        "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/UpdateSoundBody" } } } },
+        "responses": { "200": { "description": "Updated" } }
+      }
+    },
+    "/notes/update": {
+      "patch": {
+        "tags": ["Wedding"],
+        "summary": "Update notes by category",
+        "security": [ { "bearerAuth": [] } ],
+        "parameters": [ { "in": "query", "name": "category", "required": true, "schema": { "type": "string", "enum": ["Music", "Communication", "photoVideo", "weddingWeek"] } } ],
+        "requestBody": { "required": true, "content": { "application/json": { "schema": { "type": "object", "properties": { "notes": { "type": "string" } }, "required": ["notes"] } } } },
+        "responses": { "200": { "description": "Updated" }, "400": { "description": "Invalid type" } }
+      }
+    }
+  }
+}

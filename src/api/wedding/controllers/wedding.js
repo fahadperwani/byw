@@ -329,13 +329,24 @@ module.exports = {
           break; // no need to check further
         }
       }
-      const task = wedding.predefinedTasks.find(
-        (t) => t.name === TASK_CATEGORIES.createPlaylists
+      const [t1, t2] = wedding.predefinedTasks.filter(
+        (task) =>
+          task.name === TASK_CATEGORIES.decideMusic ||
+          task.name === TASK_CATEGORIES.createPlaylists
       );
 
-      if (allTrue !== task.isCompleted) {
+      if (allTrue !== t1.isCompleted) {
         await strapi.documents("api::predefined-task.predefined-task").update({
-          documentId: task.documentId,
+          documentId: t1.documentId,
+          data: {
+            isCompleted: allTrue,
+          },
+        });
+        if (!t1.isCompleted) {
+        }
+
+        await strapi.documents("api::predefined-task.predefined-task").update({
+          documentId: t2.documentId,
           data: {
             isCompleted: allTrue,
           },

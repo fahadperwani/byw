@@ -37,6 +37,15 @@
     },
     "start": {
       "type": "datetime"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "active",
+        "expired",
+        "consumed"
+      ],
+      "default": "active"
     }
   }
 }

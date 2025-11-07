@@ -1632,6 +1632,8 @@ export interface ApiPaymentPayment extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     start: Schema.Attribute.DateTime;
+    status: Schema.Attribute.Enumeration<['active', 'expired', 'consumed']> &
+      Schema.Attribute.DefaultTo<'active'>;
     type: Schema.Attribute.Enumeration<
       [
         'com.bridalyourway.mobile.staging.lifetime',

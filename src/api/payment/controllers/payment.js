@@ -10,6 +10,10 @@ module.exports = {
     try {
       const user = ctx.state.user;
 
+      if (user.payment) {
+        return ctx.badRequest("Payment already made");
+      }
+
       const { purchaseToken, productId } = ctx.request.body;
 
       const purchaseData = await verifyGooglePurchaseToken(
@@ -26,14 +30,9 @@ module.exports = {
       // }
 
       // @ts-ignore
-      let expiry = parseDate(purchaseData.expiryTimeMillis);
+      const expiry = parseDate(purchaseData.expiryTimeMillis);
       // @ts-ignore
       const start = parseDate(purchaseData.purchaseTimeMillis);
-
-      if (productId === "com.bridalyourway.mobile.staging.lifetime") {
-        const exp = Date.now() + 18 * 30 * 24 * 60 * 60 * 1000; // 18 months
-        expiry = new Date(exp).toISOString();
-      }
 
       const payment = await strapi.documents("api::payment.payment").create({
         status: "published",
@@ -43,6 +42,7 @@ module.exports = {
           type: productId,
           expiry,
           start,
+          status: "active",
         },
       });
 
@@ -60,6 +60,10 @@ module.exports = {
   async makeApplePayment(ctx) {
     try {
       const user = ctx.state.user;
+
+      if (user.payment) {
+        return ctx.badRequest("Payment already made");
+      }
 
       const { purchaseToken: transactionId } = ctx.request.body;
 
@@ -82,6 +86,7 @@ module.exports = {
           expiry,
           // @ts-ignore
           start: new Date(Number(purchaseData.purchaseDate)),
+          status: "active",
         },
       });
 
@@ -99,43 +104,35 @@ module.exports = {
         return ctx.notFound("Payment not found");
       }
 
-      // @ts-ignore
-      let expiry = new Date(user.payment.expiry);
       let payment = user.payment;
-      if (expiry && expiry < new Date()) {
-        if (payment.type === "com.bridalyourway.mobile.staging.lifetime") {
-          return ctx.conflict("Lifetime subscription has been consumed");
-        }
 
-        const updated = await strapi
-          .service("api::payment.payment")
-          .verifyAndUpdatePaymentExpiry(payment);
-        if (!updated) {
-          if (user.isPremium)
-            await strapi.documents("plugin::users-permissions.user").update({
-              documentId: user.documentId,
-              data: {
-                isPremium: false,
-              },
-            });
-          return ctx.gone("Payment has expired");
-        }
+      // Calculate the current status
+      const currentStatus = strapi
+        .service("api::payment.payment")
+        .calculatePaymentStatus(payment);
+
+      // Update status if it has changed or doesn't exist
+      if (!payment.status || payment.status !== currentStatus) {
         payment = await strapi.documents("api::payment.payment").update({
-          documentId: user.payment.documentId,
+          documentId: payment.documentId,
           data: {
-            expiry: parseDate(updated.expiry),
-            start: parseDate(updated.start),
+            // @ts-ignore
+            status: currentStatus,
           },
         });
       }
 
-      if (!user.isPremium)
+      // Update user premium status based on payment status
+      const shouldBePremium = currentStatus === "active";
+      if (user.isPremium !== shouldBePremium) {
         await strapi.documents("plugin::users-permissions.user").update({
           documentId: user.documentId,
           data: {
-            isPremium: true,
+            isPremium: shouldBePremium,
           },
         });
+      }
+
       return ctx.send(payment);
     } catch (error) {
       console.log("Error fetching payment:", error);

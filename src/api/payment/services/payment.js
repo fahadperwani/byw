@@ -1,7 +1,10 @@
 // @ts-nocheck
 "use strict";
 
-const { verifyGooglePurchaseToken } = require("../../../utils/payment");
+const {
+  verifyGooglePurchaseToken,
+  verifyAppleTransactionId,
+} = require("../../../utils/payment");
 
 module.exports = {
   async verifyAndUpdatePaymentExpiry(payment) {
@@ -36,5 +39,45 @@ module.exports = {
     } catch (error) {
       return null;
     }
+  },
+
+  /**
+   * Calculate the current status of a payment based on plan type and expiry
+   * @param {Object} payment - The payment object
+   * @returns {string} - The calculated status: 'active', 'expired', or 'consumed'
+   */
+  calculatePaymentStatus(payment) {
+    const now = new Date();
+    const isMonthlyPlan = payment.type && payment.type.includes("monthly");
+    const isLifetimePlan = payment.type && payment.type.includes("lifetime");
+
+    // If the current status is already consumed, keep it consumed
+    if (payment.status === "consumed") {
+      return "consumed";
+    }
+
+    // For monthly plans: check expiry date
+    if (isMonthlyPlan) {
+      if (payment.expiry) {
+        const expiryDate = new Date(payment.expiry);
+        if (now > expiryDate) {
+          return "expired";
+        }
+      }
+      return "active";
+    }
+
+    // For lifetime plans: status is determined by usage or external consumed flag
+    if (isLifetimePlan) {
+      // If marked as consumed, return consumed
+      if (payment.status === "consumed") {
+        return "consumed";
+      }
+      // Otherwise, lifetime plans remain active
+      return "active";
+    }
+
+    // Default to active if no specific conditions met
+    return "active";
   },
 };

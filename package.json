@@ -39,5 +39,8 @@
   },
   "strapi": {
     "uuid": "91e1397c-44fe-41d4-abe9-de4f553c7058"
+  },
+  "devDependencies": {
+    "@redocly/cli": "^2.11.0"
   }
 }

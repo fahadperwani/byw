@@ -18,8 +18,6 @@ module.exports = {
           "weddingWeek",
           "bridalDress",
           "groomOutfit",
-          "photographer",
-          "videographer",
           "bridesMaidDresses",
           "groomsMenOutfits",
           "selectedCaterer",
@@ -52,18 +50,6 @@ module.exports = {
             },
             populate: ["tasks", "notes"],
           });
-
-        if (category === "Photo & Video") {
-          subCategories = subCategories.map((sc) => {
-            if (sc.name === "Photographer" && wedding.photographer) {
-              sc["photographer"] = wedding.photographer;
-            }
-            if (sc.name === "Videographer" && wedding.videographer) {
-              sc["videographer"] = wedding.videographer;
-            }
-            return sc;
-          });
-        }
 
         if (category === "Attire") {
           subCategories = subCategories.map((sc) => {
