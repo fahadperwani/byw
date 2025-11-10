@@ -1,0 +1,15 @@
+﻿openapi: "3.0.3"
+info:
+  title: BYW API
+  description: OpenAPI documentation for custom endpoints in the BYW (Strapi v5) backend.
+  version: "2.0.0"
+servers:
+  - url: http://localhost:1337/api
+    description: Local Development
+paths:
+  /auth/signup:
+    post:
+      summary: Test endpoint
+      responses:
+        '200':
+          description: OK

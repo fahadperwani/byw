@@ -48,7 +48,12 @@ module.exports = {
               },
               category,
             },
-            populate: ["tasks", "notes"],
+            populate: {
+              tasks: {
+                sort: ["priority:asc"],
+              },
+              notes: true,
+            },
           });
 
         if (category === "Attire") {

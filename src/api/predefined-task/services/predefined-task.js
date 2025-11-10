@@ -25,7 +25,7 @@ module.exports = {
 
     // Process all subcategories in parallel
     await Promise.all(
-      subCategories.map(async (subCategory) => {
+      subCategories.map(async (subCategory, subCategoryIndex) => {
         let { notes } = subCategory;
 
         const sc = await strapi
@@ -53,7 +53,8 @@ module.exports = {
         );
 
         // Create all tasks in parallel for this subcategory
-        const taskPromises = subCategory.tasks.map((task) => {
+        // Assign priority based on index if not already set
+        const taskPromises = subCategory.tasks.map((task, taskIndex) => {
           const dueDateInWeeks = calculateDueDate(task, weddingTimelineMonths);
           const deadlineInWeeks = calculateDeadline(task, weddingTimelineMonths);
 
@@ -75,11 +76,15 @@ module.exports = {
             );
           }
 
+          // Use existing priority or assign based on order: subCategoryIndex * 1000 + taskIndex
+          // This ensures tasks maintain order across subcategories
+          const priorityValue = task.priority ?? (subCategoryIndex * 1000 + taskIndex);
+
           return strapi.documents("api::predefined-task.predefined-task").create({
             status: "published",
             data: {
               name: task.name,
-              priority: task.priority,
+              priority: priorityValue,
               deadline: formattedDeadline?.toISOString()?.split("T")[0] || null,
               dueDate: formattedDueDate?.toISOString()?.split("T")[0] || null,
               navigation: task.navigation,

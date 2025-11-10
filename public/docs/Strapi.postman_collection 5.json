@@ -1,0 +1,3096 @@
+{
+	"info": {
+		"_postman_id": "bdfc7236-6538-4caa-aab8-af4e44b33105",
+		"name": "Strapi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42153339"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "signUp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"fahadpeerwani1@gmail.com\",\r\n    \"firstName\": \"Fahad\",\r\n    \"lastName\": \"Memon\",\r\n    \"dob\": \"09/12/2002\",\r\n    \"termsAccepted\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/signup",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/auth/get-user",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"get-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "otp",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var json = pm.response.json()\r",
+									"pm.environment.set(\"access_token\", json.jwt)"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"fahadpeerwani1@gmail.com\",\r\n    \"code\": \"6798\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/verify-otp",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"verify-otp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzQ3MTUyOTk5LCJleHAiOjE3NDk3NDQ5OTl9.HNSIkyo_ZJqLnOk1aGoQsgBzg0y7ecUspjCmjeWYAd4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzQ3MTUyOTk5LCJleHAiOjE3NDk3NDQ5OTl9.HNSIkyo_ZJqLnOk1aGoQsgBzg0y7ecUspjCmjeWYAd4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"fahadpeerwani1@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "googleAuth",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accessToken\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/google-auth",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"google-auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refreshToken",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImlhdCI6MTc0ODYyNTExOCwiZXhwIjoxNzUxMjE3MTE4fQ.xZb0fRysCUJ76zzCk20a-7u_1nxbag4hvxEOlUbqpUI\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/refresh-token",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"refresh-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImlhdCI6MTc0ODU0NjIwMiwiZXhwIjoxNzQ5ODQyMjAyfQ.Mdz8FZHBlniJZQ-c00Ava5VE9l2Uhnwup_QOHGy8AIo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"lastName\": \"Memon\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/update-user",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"update-user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "wedding",
+			"item": [
+				{
+					"name": "createWedding",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"weddingDay\": \"2027-11-18\",\r\n        \"totalBudget\": \"20000\",\r\n        \"guestCount\": \"10\",\r\n        \"priorities\": [\r\n            \"Venue\", \"Attire\", \"Other\"\r\n        ]    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/wedding/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"wedding",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getWedding",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/wedding/get",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"wedding",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateWedding",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"weddingDay\": \"2029-11-18\",\r\n        \"totalBudget\": 90000,\r\n        \"guestCount\": 69\r\n            \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/wedding/updateWedding",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"wedding",
+								"updateWedding"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getWeddingAttireInfo",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"createGuestList\": false,\r\n    \"guestsAddedToList\": false,\r\n    \"finalizeGuestList\": false,\r\n    \"makeSeatingChart\": true,\r\n    \"designSeatingChart\": false\r\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/wedding/attire",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"wedding",
+								"attire"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getWeddingVenueInfo",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "getWeddingBudget",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"weddingDay\": \"2029-11-18\",\r\n        \"budget\": 90000,\r\n        \"guestCount\": 69\r\n            \r\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/wedding/budget",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"wedding",
+								"budget"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateBudget",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"venue\": 26100,\r\n        \"floral\": 5400,\r\n        \"attire\": 12600,\r\n        \"photo\": 19800,\r\n        \"food\": 17100,\r\n        \"communication\": 2700,\r\n        \"miscellaneous\": 6300\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/wedding/budget/update",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"wedding",
+								"budget",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getFood",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"createGuestList\": false,\r\n    \"guestsAddedToList\": false,\r\n    \"finalizeGuestList\": false,\r\n    \"makeSeatingChart\": true,\r\n    \"designSeatingChart\": false\r\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/wedding/food",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"wedding",
+								"food"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getDrawers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/drawer/get?navigation=/photoVideo",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"drawer",
+								"get"
+							],
+							"query": [
+								{
+									"key": "navigation",
+									"value": "/photoVideo"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "task",
+			"item": [
+				{
+					"name": "createTask",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"heeeeee\",\r\n    \"dueDate\": \"2025-05-22\",\r\n    \"deadline\": \"2025-05-25\",\r\n    \"category\": \"Attire\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/task/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"task",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTasks",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/task/get",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"task",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTask",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNzQ3NzU4NjE5LCJleHAiOjE3NDgzNjM0MTl9.Sz9VVkPFu4NXzuDv1thvaNaEvqMVFYa74dFPX6-MZAE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/task/get?id=e5oljy2212on009zhkvfbsyu",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"task",
+								"get"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "e5oljy2212on009zhkvfbsyu"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateTask",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"helloooo\",\r\n    \"dueDate\": \"2025-05-23\",\r\n    \"deadline\": \"2025-05-25\",\r\n    \"category\": \"Attire\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/task/updateTask?id=mszejub0aa4nt2o8x1nmmyuj",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"task",
+								"updateTask"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "mszejub0aa4nt2o8x1nmmyuj"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPredefinedTasks",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"tables\": 20,\r\n  \"chairs\": 80,\r\n  \"tents\": 2,\r\n  \"danceFloor\": true,\r\n  \"soundEquipment\": false,\r\n  \"restrooms\": true,\r\n  \"delegation\": false,\r\n  \"notes\": \"Event setup includes two tents and a small dance floor.\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{base_url}}/tasks/predefined/get?category=Food",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tasks",
+								"predefined",
+								"get"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "Food"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "venue",
+			"item": [
+				{
+					"name": "createVenue",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Towne Place Suites Test 1\",\r\n  \"address\": \"123 Example St., Dallas, TX 75038 1\",\r\n  \"indoor\": true,\r\n  \"outdoor\": false,\r\n  \"cost\": 150.50,\r\n  \"occupancy\": 50,\r\n  \"hoursOfUse\": 6,\r\n  \"tables\": 10,\r\n  \"chairs\": 50,\r\n  \"linens\": 8,\r\n  \"parking\": true,\r\n  \"soundEquipment\": false,\r\n  \"restrooms\": true,\r\n  \"setupCleanup\": true,\r\n  \"notes\": \"Additional setup required for large groups.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/venue/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"venue",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getVenues",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/venue/get",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"venue",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pickVenue",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/venue/pick?id=vjb7sxj18sun06f4ltthl8la",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"venue",
+								"pick"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "vjb7sxj18sun06f4ltthl8la"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteVenue",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/venue/delete?id=vjb7sxj18sun06f4ltthl8la",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"venue",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "vjb7sxj18sun06f4ltthl8la"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateVenue",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Towne Place Suites Test\",\r\n//   \"address\": \"123 Example St., Dallas, TX 75038 1\",\r\n//   \"indoor\": true,\r\n//   \"outdoor\": false,\r\n//   \"cost\": 150.50,\r\n//   \"occupancy\": 50,\r\n//   \"hoursOfUse\": 6,\r\n//   \"tables\": 10,\r\n//   \"chairs\": 50,\r\n//   \"linens\": 8,\r\n//   \"parking\": true,\r\n//   \"soundEquipment\": false,\r\n//   \"restrooms\": true,\r\n//   \"setupCleanup\": true,\r\n//   \"notes\": \"Additional setup required for large groups.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/venue/update?id=ua4teb6k7v18al8bq2iist7s",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"venue",
+								"update"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "ua4teb6k7v18al8bq2iist7s"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateVenueItems",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"tables\": 20,\r\n  \"chairs\": 80,\r\n  \"tents\": 2,\r\n  \"danceFloor\": true,\r\n  \"soundEquipment\": false,\r\n  \"restrooms\": true,\r\n  \"delegation\": false,\r\n  \"notes\": \"Event setup includes two tents and a small dance floor.\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/venue/item/update",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"venue",
+								"item",
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Dress",
+			"item": [
+				{
+					"name": "createDress",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"shopName\": \"Jiyey Bhutto 3\",\r\n    \"shopAddress\": \"Proto IT Consultants\",\r\n    \"cost\": 93.5,\r\n    \"isBridal\": true,\r\n    \"note\": \"Note for Jiyey Bhutto 3 Dress\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/dress/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"dress",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getBridalDresses",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/dress/get?type=bridal",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"dress",
+								"get"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "bridal"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getGroomDresses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"description": "### Get Groom Dresses\n\nThis endpoint retrieves a list of dresses categorized as \"groom\" from the dress collection.\n\n#### Request Parameters\n\n- **type** (query parameter): Specifies the category of dresses to retrieve. In this case, the value should be set to `groom`.\n    \n\n#### Response\n\nUpon a successful request, the API returns a JSON array containing dress objects with the following properties:\n\n- **id**: Unique identifier for the dress.\n    \n- **documentId**: Identifier for the associated document.\n    \n- **shopName**: Name of the shop where the dress is available.\n    \n- **shopAddress**: Address of the shop.\n    \n- **cost**: Price of the dress.\n    \n- **note**: Additional notes regarding the dress.\n    \n- **isBridal**: Boolean indicating if the dress is bridal.\n    \n- **createdAt**: Timestamp of when the dress entry was created.\n    \n- **updatedAt**: Timestamp of the last update to the dress entry.\n    \n- **publishedAt**: Timestamp indicating when the dress was published (may be null).\n    \n- **locale**: Locale information (may be null).\n    \n\n#### Notes\n\n- Ensure that the `type` parameter is correctly set to `groom` to receive the relevant dress data.\n    \n- The response will contain an array of dresses, and the properties may vary based on the available data in the database."
+					},
+					"response": []
+				},
+				{
+					"name": "pickGroomOutfit",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/dress/pick?type=groom&id=whdnyfll4u0vjknvik87iseo",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"dress",
+								"pick"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "groom"
+								},
+								{
+									"key": "id",
+									"value": "whdnyfll4u0vjknvik87iseo"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PickBridalDress",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/dress/pick?type=bridal&id=jge4d25bz0mpzep8zxjmtbmo",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"dress",
+								"pick"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "bridal"
+								},
+								{
+									"key": "id",
+									"value": "jge4d25bz0mpzep8zxjmtbmo"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateDress",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"shopName\": \"Jiyey Bhutto 4\",\r\n    \"shopAddress\": \"Proto IT Consultants\",\r\n    \"cost\": 93.5,\r\n    \"isBridal\": true,\r\n    \"note\": \"Note for Jiyey Bhutto 4 Dress\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/dress/update?id=gdjqs7fvq3lxtdrvnw6gh4ak",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"dress",
+								"update"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "gdjqs7fvq3lxtdrvnw6gh4ak"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteDress",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/dress/delete?id=gdjqs7fvq3lxtdrvnw6gh4ak",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"dress",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "gdjqs7fvq3lxtdrvnw6gh4ak"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Venue Helper",
+			"item": [
+				{
+					"name": "createHelper",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Food Helper 2\",\r\n    \"phone\": \"+1 234 567 890\",\r\n    \"email\": \"helper1@gmail.com\",\r\n    \"roles\": [\"m69l78ua2z0wgun28htexsex\"],\r\n    \"cost\": 84\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/helper/caterer/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"helper",
+								"caterer",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getVenueHelpers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/helper/caterer/get",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"helper",
+								"caterer",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Food Helper 2\",\r\n    \"phone\": \"+1 234 567 890\",\r\n    \"email\": \"helper1@gmail.com\",\r\n    \"roles\": [\"m69l78ua2z0wgun28htexsex\"]\r\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/caterer/pick?id=i3h3w3vi9bilw0phrl6cadh3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"caterer",
+								"pick"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "i3h3w3vi9bilw0phrl6cadh3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Venue Helper Roles",
+			"item": [
+				{
+					"name": "createVenueHelperRole",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Role 69\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/helper/venue/role/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"helper",
+								"venue",
+								"role",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getVenueHelperRole",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Role 69\"\r\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/helper/venue/role/get",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"helper",
+								"venue",
+								"role",
+								"get"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "attire",
+			"item": [
+				{
+					"name": "createBridesMaidAttire",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"dresses\": [\r\n    {\r\n      \"name\": \"Emerald Green Gown\",\r\n      \"location\": \"Lahore Bridal Boutique\",\r\n      \"isPurchased\": true\r\n    },\r\n    {\r\n      \"name\": \"Champagne Satin Suit\",\r\n      \"location\": \"Karachi Designer Studio\",\r\n      \"isPurchased\": false\r\n    }\r\n  ],\r\n  \"accessoriesPurchased\": true\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/attire/create?type=bridesMaidDresses",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"attire",
+								"create"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "bridesMaidDresses"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createGroomsMenAttire",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"dresses\": [\r\n    {\r\n      \"name\": \"Royal Blue Sherwani\",\r\n      \"location\": \"Regal Gents Wear - Faisalabad\",\r\n      \"isPurchased\": false\r\n    },\r\n    {\r\n      \"name\": \"Ivory Anarkali\",\r\n      \"location\": \"Zainab Market - Karachi\",\r\n      \"isPurchased\": true\r\n    },\r\n    {\r\n      \"name\": \"Peach Saree\",\r\n      \"location\": \"Alkaram Studio - Multan\",\r\n      \"isPurchased\": false\r\n    }\r\n  ],\r\n  \"accessoriesPurchased\": false\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/attire/create?type=groomsMenOutfits",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"attire",
+								"create"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "groomsMenOutfits"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getGroomsMenAttire",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/attire/get?type=groomsMenOutfits",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"attire",
+								"get"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "groomsMenOutfits"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getBridesMaidAttire",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/attire/get?type=groomsMenOutfits",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"attire",
+								"get"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "groomsMenOutfits"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "alterations",
+			"item": [
+				{
+					"name": "createOrGetAlterations",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/alteration/get?id=r394ujusstuy81to5sdg6bjm",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"alteration",
+								"get"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "r394ujusstuy81to5sdg6bjm"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createAlterationItem",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Alteration Item 3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/alteration/item/create?id=po18chfl5ss0atldxm0d1li5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"alteration",
+								"item",
+								"create"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "po18chfl5ss0atldxm0d1li5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAlterationItems",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "updateAlterationItem",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Update Item 1\"\r\n    // \"isAcquired\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/alteration/item/update?id=bj6gy6u6pyl7szpqg22xn5sn",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"alteration",
+								"item",
+								"update"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "bj6gy6u6pyl7szpqg22xn5sn"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateAlteration",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    // \"scheduled\": false,\r\n    \"received\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/alteration/update?id=po18chfl5ss0atldxm0d1li5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"alteration",
+								"update"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "po18chfl5ss0atldxm0d1li5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "decor & floral",
+			"item": [
+				{
+					"name": "getOrCreateFloralDecor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/floral-decor/get",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"floral-decor",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateFloralDecor",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"designFloralsDecor\": false\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/floral-decor/update?id=lfm00x5pfjndkwh9aaqc5fqx",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"floral-decor",
+								"update"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "lfm00x5pfjndkwh9aaqc5fqx"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createFloristItem",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Florist Item 1\",\r\n    \"quantity\": 69\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/florist/create?id=lfm00x5pfjndkwh9aaqc5fqx",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"florist",
+								"create"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "lfm00x5pfjndkwh9aaqc5fqx"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateFloristItems",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"quantity\": 699,\r\n    \"isPurchased\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/florist/update?id=f9wgqi80oy8wal30felvpgq8",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"florist",
+								"update"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "f9wgqi80oy8wal30felvpgq8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteFloristItem",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/florist/delete?id=f9wgqi80oy8wal30felvpgq8",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"florist",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "f9wgqi80oy8wal30felvpgq8"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Children And Others",
+			"item": [
+				{
+					"name": "createOtherAttires",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"childrenDresses\": [{\"name\": \"Dress1\"}],\r\n    \"otherDresses\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/attire/other/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"attire",
+								"other",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getChildrenAndOther",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"childrenDresses\": [{\"name\": \"Dress1\"}],\r\n    \"otherDresses\": []\r\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/attire/other/get?id=lz9yrgkvjtomh3whb9vwc3vu",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"attire",
+								"other",
+								"get"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "lz9yrgkvjtomh3whb9vwc3vu"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Guest And Seating",
+			"item": [
+				{
+					"name": "getOrCreateGuestAndSeating",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/guest/get",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"guest",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateGuestAndSeating",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"createGuestList\": false,\r\n    \"guestsAddedToList\": false,\r\n    \"finalizeGuestList\": false,\r\n    \"makeSeatingChart\": true,\r\n    \"designSeatingChart\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/guest/update",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"guest",
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Communication",
+			"item": [
+				{
+					"name": "createOrGetCommunication",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/coomunication/get",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"coomunication",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCommunication",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"websiteCreated\": false,\r\n    \"websiteLinkShared\": true,\r\n    \"weddingRegistrySetup\": false,\r\n    \"createdHardcopy\": false,\r\n    \"receivedHardcopy\": false,\r\n    \"sentHardcopy\": false,\r\n    \"createdDigitalInvitaion\": false,\r\n    \"sentDigitalInvitation\": false,\r\n    \"createdPrograms\": false,\r\n    \"receivedPrograms\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/communication/update",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"communication",
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Music And Sound",
+			"item": [
+				{
+					"name": "createOrGetMusicAndOther",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/music-and-other/get",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"music-and-other",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createOrGetMusic",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/music/get",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"music",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateMusic",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"notes\": \"Couple loves jazz and acoustic tunes.\",\r\n  \"preludePlaylist\": true,\r\n  \"groomEntrance\": true,\r\n  \"weddingParty\": true,\r\n  \"brideEntrance\": true,\r\n  \"specialSong\": true,\r\n  \"recessionalSong\": true,\r\n  \"postCeremonyPlaylist\": true,\r\n  \"entranceSong\": true,\r\n  \"firstDance\": true,\r\n  \"fatherDaughter\": true,\r\n  \"motherSon\": true,\r\n  \"bgMusic\": true,\r\n  \"dancingPlaylist\": true,\r\n  \"sendOffSong\": true\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/music/update",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"music",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createOrUpdateOthers",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"hireDj\": true,\r\n  \"hireMusician\": false,\r\n  \"soundSystem\": \"venue\",\r\n  \"notes\": \"DJ will bring backup equipment in case venue sound fails.\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/others/update",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"others",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateMusicAndOther",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"notes\": \"Note 1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/music-and-other/update",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"music-and-other",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOthers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/others/get",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"others",
+								"get"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Photographer and Videographer",
+			"item": [
+				{
+					"name": "createOrGetSection",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/media/get",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"media",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateSection",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"areSame\": true,\r\n    \"notes\": \"No notes\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/media/update",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"media",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createPhotographer",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Photographer1\",\r\n    \"serviceHours\": 10,\r\n    \"cost\": 115\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/media/photographer/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"media",
+								"photographer",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPhotographers",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/media/photographer/get",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"media",
+								"photographer",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPhotographer",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/media/photographer/get?id=h1gs8cffb462dyiym2nruu3b",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"media",
+								"photographer",
+								"get"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "h1gs8cffb462dyiym2nruu3b"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updatePhotographer",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Photographer2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/media/photographer/update?id=h1gs8cffb462dyiym2nruu3c",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"media",
+								"photographer",
+								"update"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "h1gs8cffb462dyiym2nruu3c"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletePhotographer",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/media/photographer/delete?id=m9vb8sezvezbdjr286fx6o08",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"media",
+								"photographer",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "m9vb8sezvezbdjr286fx6o08"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pickPhotographer",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/media/photographer/pick?id=nxoy012r5of9o4x9hn5nmgpl",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"media",
+								"photographer",
+								"pick"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "nxoy012r5of9o4x9hn5nmgpl"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Food",
+			"item": [
+				{
+					"name": "createOrGetMealSection",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/meal/get",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"meal",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createOrGetDessertSection",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/food/dessert/get",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"food",
+								"dessert",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateMealSection",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"notes\": \"Dessert Notes\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/dessert/update",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"dessert",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createMenu",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"dessert menu\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/dessert/menu/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"dessert",
+								"menu",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getMenus",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/dessert/menu/get",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"dessert",
+								"menu",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateMenu",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Dessert Menu 1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/meal/menu/update?id=in0d2wyrst9ccv69crv0cow8",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"meal",
+								"menu",
+								"update"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "in0d2wyrst9ccv69crv0cow8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createMenuItem",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Meal Menu Item 1\",\r\n    \"serving\": 20,\r\n    \"isPurchased\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/dessert/menu/item/create?id=d08ltwegtxhiz9znj47gfai4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"dessert",
+								"menu",
+								"item",
+								"create"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "d08ltwegtxhiz9znj47gfai4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateMenuItem",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Meal Menu Item 1\",\r\n    \"serving\": 20,\r\n    \"isPurchased\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/dessert/menu/item/update?id=dj8gspvbw26d8to2nqyvg0le&menuId=d08ltwegtxhiz9znj47gfai4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"dessert",
+								"menu",
+								"item",
+								"update"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "dj8gspvbw26d8to2nqyvg0le"
+								},
+								{
+									"key": "menuId",
+									"value": "d08ltwegtxhiz9znj47gfai4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteMenuItem",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/dessert/menu/item/delete?id=tl8vqjwvu3te564lgufa3vss&menuId=d08ltwegtxhiz9znj47gfai4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"dessert",
+								"menu",
+								"item",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "tl8vqjwvu3te564lgufa3vss"
+								},
+								{
+									"key": "menuId",
+									"value": "d08ltwegtxhiz9znj47gfai4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteMenu",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/meal/menu/delete?id=fmcgt4irwxjs23pswczj1jlj",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"meal",
+								"menu",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "fmcgt4irwxjs23pswczj1jlj"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payment",
+			"item": [
+				{
+					"name": "makeGooglePayment",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"purchaseToken\": \"eyJhbGciOiJFUzI1NiIsIng1YyI6WyJNSUlFTVRDQ0E3YWdBd0lCQWdJUVI4S0h6ZG41NTRaL1VvcmFkTng5dHpBS0JnZ3Foa2pPUFFRREF6QjFNVVF3UWdZRFZRUURERHRCY0hCc1pTQlhiM0pzWkhkcFpHVWdSR1YyWld4dmNHVnlJRkpsYkdGMGFXOXVjeUJEWlhKMGFXWnBZMkYwYVc5dUlFRjFkR2h2Y21sMGVURUxNQWtHQTFVRUN3d0NSell4RXpBUkJnTlZCQW9NQ2tGd2NHeGxJRWx1WXk0eEN6QUpCZ05WQkFZVEFsVlRNQjRYRFRJMU1Ea3hPVEU1TkRRMU1Wb1hEVEkzTVRBeE16RTNORGN5TTFvd2daSXhRREErQmdOVkJBTU1OMUJ5YjJRZ1JVTkRJRTFoWXlCQmNIQWdVM1J2Y21VZ1lXNWtJR2xVZFc1bGN5QlRkRzl5WlNCU1pXTmxhWEIwSUZOcFoyNXBibWN4TERBcUJnTlZCQXNNSTBGd2NHeGxJRmR2Y214a2QybGtaU0JFWlhabGJHOXdaWElnVW1Wc1lYUnBiMjV6TVJNd0VRWURWUVFLREFwQmNIQnNaU0JKYm1NdU1Rc3dDUVlEVlFRR0V3SlZVekJaTUJNR0J5cUdTTTQ5QWdFR0NDcUdTTTQ5QXdFSEEwSUFCTm5WdmhjdjdpVCs3RXg1dEJNQmdyUXNwSHpJc1hSaTBZeGZlazdsdjh3RW1qL2JIaVd0TndKcWMyQm9IenNRaUVqUDdLRklJS2c0WTh5MC9ueW51QW1qZ2dJSU1JSUNCREFNQmdOVkhSTUJBZjhFQWpBQU1COEdBMVVkSXdRWU1CYUFGRDh2bENOUjAxREptaWc5N2JCODVjK2xrR0taTUhBR0NDc0dBUVVGQndFQkJHUXdZakF0QmdnckJnRUZCUWN3QW9ZaGFIUjBjRG92TDJObGNuUnpMbUZ3Y0d4bExtTnZiUz\",\r\n    \"productId\": \"com.bridalyourway.mobile.staging.monthly\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/payment/apple/make",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"payment",
+								"apple",
+								"make"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPayment",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"purchaseToken\": \"nebnnlgagjjeaoobfelmeonn.AO-J1OwvP_z6NULJ7NLzlMWXXDQj4PHZGmeWeaYw5SyO-NHXvlvoAtk_cXCqPrMsmw2H3fGHJhe8ERB34IBnH04zpBEWMTv0V63NhLBxWzyTf0rm2G5lSp4\",\r\n    \"productId\": \"com.bridalyourway.mobile.staging.monthly\"\r\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/payment/get",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"payment",
+								"get"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Wedding Week",
+			"item": [
+				{
+					"name": "createOrGetWeddingWeek",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/wedding-week/get",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"wedding-week",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateWeddingWeek",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"notes\": \"No weekly notes\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/wedding-week/update",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"wedding-week",
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Odds And Ends",
+			"item": [
+				{
+					"name": "getOddsAndEnds",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"notes\": \"No weekly notes\"\r\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/odds-and-ends/get?type=miscellaneous",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"odds-and-ends",
+								"get"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "miscellaneous"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Singles",
+			"item": [
+				{
+					"name": "home",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"tables\": 20,\r\n  \"chairs\": 80,\r\n  \"tents\": 2,\r\n  \"danceFloor\": true,\r\n  \"soundEquipment\": false,\r\n  \"restrooms\": true,\r\n  \"delegation\": false,\r\n  \"notes\": \"Event setup includes two tents and a small dance floor.\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{base_url}}/single/home/get",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"single",
+								"home",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "weddingWeek",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/single/wedding-week/get",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"single",
+								"wedding-week",
+								"get"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "updateOddsAndEnds",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dressDecision\": \"Sell my dress\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/odds-and-ends/update?type=postWedding",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"odds-and-ends",
+						"update"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "postWedding"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
