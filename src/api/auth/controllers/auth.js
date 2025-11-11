@@ -322,8 +322,62 @@ async function sendOtp(email, user) {
 
     await strapi.plugins["email"].services.email.send({
       to: email,
-      subject: "Your OTP Code",
-      text: `Your verification code is ${code}. It will expire in 1 minute.`,
+      subject: "Your BYW Verification Code",
+      text: `Thank you for registering with Bridal Your Way. Your verification code is ${code}, and it will expire in 5 minutes.`,
+      html: `
+        <!DOCTYPE html>
+        <html>
+          <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f5f5f5;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f5f5f5; padding: 20px;">
+              <tr>
+                <td align="center">
+                  <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <!-- Header with Logo -->
+                    <tr>
+                      <td align="center" style="padding: 40px 20px; background-color: #f9f4f0;">
+                        <img src="https://i.ibb.co/1fnPTfN9/app-icon.jpg" style="width: 150px; height: auto;" />
+                      </td>
+                    </tr>
+                    
+                    <!-- Content -->
+                    <tr>
+                      <td style="padding: 40px 30px;">
+                        <h2 style="color: #3d2817; margin: 0 0 20px 0; font-size: 24px; text-align: center;">Verify Your Email</h2>
+                        <p style="color: #666666; font-size: 16px; line-height: 1.5; margin: 0 0 20px 0;">
+                          Thank you for registering with <strong>Bridal Your Way</strong>. Your verification code is:
+                        </p>
+                        
+                        <!-- OTP Code Box -->
+                        <div style="background-color: #f9f4f0; border: 2px dashed #3d2817; border-radius: 8px; padding: 20px; text-align: center; margin: 30px 0;">
+                          <span style="font-size: 32px; font-weight: bold; color: #3d2817; letter-spacing: 8px;">${code}</span>
+                        </div>
+                        
+                        <p style="color: #666666; font-size: 14px; line-height: 1.5; margin: 20px 0 0 0; text-align: center;">
+                          This code will expire in <strong>5 minutes</strong>.
+                        </p>
+                        
+                        <p style="color: #999999; font-size: 12px; line-height: 1.5; margin: 30px 0 0 0; text-align: center;">
+                          If you didn't request this code, please ignore this email.
+                        </p>
+                      </td>
+                    </tr>
+                    
+                    <!-- Footer -->
+                    <tr>
+                      <td style="padding: 20px 30px; background-color: #f9f4f0; text-align: center;">
+                        <p style="color: #999999; font-size: 12px; margin: 0; line-height: 1.5;">
+                          This email was sent from <strong>Bridal Your Way</strong><br/>
+                          Your complete wedding planning companion
+                        </p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </body>
+        </html>
+      `,
     });
 
     console.log("OTP sent and saved successfully");

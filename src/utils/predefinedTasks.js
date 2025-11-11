@@ -47,7 +47,7 @@ const weddingTasksData = {
         priority: 2,
       },
       {
-        name: "Begin adding helpers to your list",
+        name: "Begin adding helpers to a list",
         navigation: null,
         isCompleted: false,
         category: null,
